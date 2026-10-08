@@ -65,6 +65,29 @@ The extracted records are saved to `data/processed/documents.json`.
 **Current limitation:** Scanned PDFs, OCR and password-protected documents are not supported.
 
 
+## Text Chunking
+
+RAGAssist uses deterministic, overlapping character-based chunking to prepare extracted documents for semantic search.
+
+**Current configuration:**
+
+- Chunk size: 500 characters
+- Chunk overlap: 100 characters
+- Stable chunk IDs generated using SHA-256
+- Preserved source filenames, file types and PDF page numbers
+- Character offsets for traceability
+
+Run the pipeline:
+
+```bash
+python -m src.ingestion.run_ingestion
+python -m src.chunking.run_chunking
+```
+
+The resulting chunks are stored in `data/processed/chunks.json`.
+
+Character-based chunking is the initial baseline. Alternative chunking strategies will be evaluated in later phases.
+
 ## Current Status
 
 **Phase 1 — Repository and development environment setup.**
