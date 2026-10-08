@@ -1,0 +1,25 @@
+# Python virtual environments
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Generated data
+data/processed/
+data/uploads/
+
+# Vector indexes
+vector_store/
+*.faiss
+
+# OS files
+.DS_Store

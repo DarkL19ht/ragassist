@@ -1,0 +1,6 @@
+pandas
+numpy
+pypdf
+python-dotenv
+pytest
+ipykernel
