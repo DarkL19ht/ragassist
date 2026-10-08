@@ -4,3 +4,4 @@ pypdf
 python-dotenv
 pytest
 ipykernel
+reportlab

@@ -42,6 +42,29 @@ python -m pip install -r requirements.txt
 python -m pytest -v
 ```
 
+## Document Ingestion
+
+RAGAssist supports text extraction from UTF-8 TXT files and text-based PDF documents.
+
+The ingestion pipeline:
+
+- Validates supported file types.
+- Extracts document text.
+- Preserves source filenames, file types and PDF page numbers.
+- Skips PDF pages without extractable text.
+- Exports structured document records as JSON.
+
+Run the pipeline:
+
+```bash
+python -m src.ingestion.run_ingestion
+```
+
+The extracted records are saved to `data/processed/documents.json`.
+
+**Current limitation:** Scanned PDFs, OCR and password-protected documents are not supported.
+
+
 ## Current Status
 
 **Phase 1 — Repository and development environment setup.**
