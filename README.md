@@ -88,11 +88,34 @@ The resulting chunks are stored in `data/processed/chunks.json`.
 
 Character-based chunking is the initial baseline. Alternative chunking strategies will be evaluated in later phases.
 
+## Semantic Search
+
+RAGAssist uses `sentence-transformers/all-MiniLM-L6-v2` to generate 384-dimensional document embeddings.
+
+Embeddings are normalized and indexed using FAISS `IndexFlatIP` for cosine-similarity search.
+
+### Build the search index
+
+```bash
+python -m src.ingestion.run_ingestion
+python -m src.chunking.run_chunking
+python -m src.embeddings.build_index
+```
+
+### Search documents
+
+```bash
+python -m src.retrieval.search "Can employees work abroad?" --top-k 3
+```
+
+Search results include similarity scores, source filenames, page numbers, chunk IDs and retrieved text.
+
+The initial retrieval baseline is documented in `reports/retrieval_baseline.md`.
+
+
 ## Current Status
 
-**Phase 1 — Repository and development environment setup.**
-
-The RAG, LLM, API and deployment features listed above are planned and will be implemented incrementally.
+Semantic retrieval is implemented. LLM-based answer generation and systematic retrieval evaluation are planned for later phases.
 
 ## Sample Data
 
