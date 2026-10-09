@@ -113,9 +113,48 @@ Search results include similarity scores, source filenames, page numbers, chunk 
 The initial retrieval baseline is documented in `reports/retrieval_baseline.md`.
 
 
+## LangChain Retrieval Pipeline
+
+RAGAssist uses LangChain Core to orchestrate semantic retrieval over the existing FAISS vector index.
+
+The retrieval pipeline:
+
+- Embeds a natural-language question using Sentence Transformers.
+- Retrieves matching document chunks from FAISS.
+- Converts the results into LangChain `Document` objects.
+- Preserves source filenames, page numbers, chunk IDs and similarity scores.
+- Produces formatted, source-labelled context for a future LLM.
+
+### Run Retrieval
+
+First, build the index if necessary:
+
+```bash
+python -m src.ingestion.run_ingestion
+python -m src.chunking.run_chunking
+python -m src.embeddings.build_index
+```
+
+Then retrieve document passages:
+
+```bash
+python -m src.retrieval.run_retrieval \
+    "Can employees work abroad?" \
+    --top-k 3
+```
+
+### Automated Testing
+
+```bash
+python -m pytest -q
+```
+
+The retrieval components are tested using dependency injection and fake embedding/vector-search implementations, avoiding external model downloads during unit tests.
+
+
 ## Current Status
 
-Semantic retrieval is implemented. LLM-based answer generation and systematic retrieval evaluation are planned for later phases.
+Document ingestion, chunking, embeddings, FAISS semantic search and LangChain retrieval are implemented. LLM-based answer generation is planned for the next phase.
 
 ## Sample Data
 
