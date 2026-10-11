@@ -193,3 +193,42 @@ def test_pdf_page_metadata_preserved():
     )
 
     assert result["sources"][0]["page_number"] == 3
+
+
+def test_unicode_whitespace_citation_accepted():
+    """
+    LLMs sometimes generate Unicode whitespace
+    between 'Source' and the citation number.
+    """
+
+    generator = make_generator(
+        "Written HR approval is required. "
+        "[Source\u202f1]"
+    )
+
+    result = generator.answer(
+        "Can employees work abroad?"
+    )
+
+    assert result["status"] == "answered"
+    assert len(result["sources"]) == 1
+    assert result["sources"][0]["source_number"] == 1
+
+
+def test_invalid_unicode_citation_rejected():
+    """
+    Unicode whitespace should be accepted, but
+    references to nonexistent sources must not be.
+    """
+
+    generator = make_generator(
+        "Written HR approval is required. "
+        "[Source\u202f99]"
+    )
+
+    result = generator.answer(
+        "Can employees work abroad?"
+    )
+
+    assert result["status"] == "insufficient_evidence"
+    assert result["sources"] == []
