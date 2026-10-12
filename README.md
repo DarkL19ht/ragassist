@@ -152,9 +152,7 @@ python -m pytest -q
 The retrieval components are tested using dependency injection and fake embedding/vector-search implementations, avoiding external model downloads during unit tests.
 
 
-## Current Status
 
-Document ingestion, chunking, embeddings, FAISS semantic search and LangChain retrieval are implemented. LLM-based answer generation is planned for the next phase.
 
 ## Sample Data
 
@@ -187,3 +185,40 @@ Results are saved to:
 The current evaluation dataset is small and based on a
 fictional policy document. Results are an initial
 engineering baseline, not production benchmarks.
+
+
+## Current Status
+
+Document ingestion, chunking, embeddings, FAISS semantic search and LangChain retrieval are implemented. LLM-based answer generation is planned for the next phase.
+
+## Answer Quality Evaluation
+
+RAGAssist evaluates its generated answers using 12
+curated questions, including unsupported questions
+designed to test hallucination and abstention behaviour.
+
+Run answer evaluation:
+
+    python -m src.evaluation.run_answer_eval --limit 12
+
+Manually review generated answers and their citations:
+
+    python -m src.evaluation.review_answer_eval
+
+Generate the evaluation summary:
+
+    python -m src.evaluation.summarize_answer_eval
+
+The evaluation records:
+
+- Answer correctness
+- Citation support
+- Correct and incorrect abstentions
+- Unsupported-answer events
+- End-to-end response latency
+
+See `reports/evaluation_summary.md` for results.
+
+The current dataset is small and fictional. These results
+are an initial engineering baseline, not a production
+reliability guarantee.

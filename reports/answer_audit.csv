@@ -1,0 +1,138 @@
+question_id,question,answerable,expected_answer,generated_answer,status,source_chunk_ids,cited_passages,latency_seconds,answer_correct,citation_supported,review_notes
+Q01,Can employees work from another country?,True,Written HR approval is required before working abroad.,"Yes. Employees may work from another country, but only after obtaining written approval from HR, which is granted based on employment, tax, security, and operational requirements. [Source 1]",answered,ba3021d3a05e7412,"ba3021d3a05e7412:  during
+their agreed core working hours of 10:00 to 15:00,
+Monday to Friday.
+
+4. Working From Abroad
+
+Employees must obtain written approval from HR
+before working from another country.
+
+Approval depends on employment, tax, security,
+and operational requirements.
+
+5. Equipment
+
+The company provides a work laptop to employees
+approved for remote work.
+
+Employees are responsible for maintaining a secure
+internet connection.
+
+6. Data Security
+
+Employees must use approved company systems
+and must no",0.794,yes,yes,
+Q02,Who must approve working from abroad?,True,HR must give written approval.,Employees must obtain written approval from **HR** before working from another country. [Source 1],answered,ba3021d3a05e7412,"ba3021d3a05e7412:  during
+their agreed core working hours of 10:00 to 15:00,
+Monday to Friday.
+
+4. Working From Abroad
+
+Employees must obtain written approval from HR
+before working from another country.
+
+Approval depends on employment, tax, security,
+and operational requirements.
+
+5. Equipment
+
+The company provides a work laptop to employees
+approved for remote work.
+
+Employees are responsible for maintaining a secure
+internet connection.
+
+6. Data Security
+
+Employees must use approved company systems
+and must no",0.471,yes,yes,
+Q03,What are the company's core working hours?,True,"10:00 to 15:00, Monday to Friday.",I couldn't find enough reliable evidence in the provided documents to answer that question.,insufficient_evidence,,,0.388,no,na,
+Q04,Which days do the core working hours apply?,True,Monday to Friday.,I couldn't find enough reliable evidence in the provided documents to answer that question.,insufficient_evidence,,,0.464,no,na,
+Q05,What equipment does the company provide for remote workers?,True,A work laptop for approved remote workers.,The company provides a work laptop to employees approved for remote work. [Source 1],answered,ba3021d3a05e7412,"ba3021d3a05e7412:  during
+their agreed core working hours of 10:00 to 15:00,
+Monday to Friday.
+
+4. Working From Abroad
+
+Employees must obtain written approval from HR
+before working from another country.
+
+Approval depends on employment, tax, security,
+and operational requirements.
+
+5. Equipment
+
+The company provides a work laptop to employees
+approved for remote work.
+
+Employees are responsible for maintaining a secure
+internet connection.
+
+6. Data Security
+
+Employees must use approved company systems
+and must no",0.599,yes,yes,
+Q06,When can employees request remote working?,True,After completing three months of employment.,Employees may request remote‑working arrangements after completing three months of employment. [Source 2],answered,1a3510de6dfc06f1,"1a3510de6dfc06f1: RAGASSIST SAMPLE COMPANY
+REMOTE WORK POLICY
+
+1. Purpose
+
+This policy explains the remote-working arrangements
+for employees of RAGAssist Sample Company.
+
+2. Eligibility
+
+Employees may request remote-working arrangements
+after completing three months of employment.
+
+Remote-working requests must be approved by the
+employee's line manager.
+
+3. Working Hours
+
+Employees are expected to remain available during
+their agreed core working hours of 10:00 to 15:00,
+Monday to Friday.
+
+4. Working From Abroad",0.495,yes,yes,
+Q07,Who approves ordinary remote-working requests?,True,The employee's line manager.,Ordinary remote‑working requests must be approved by the employee’s line manager. [Source 2],answered,1a3510de6dfc06f1,"1a3510de6dfc06f1: RAGASSIST SAMPLE COMPANY
+REMOTE WORK POLICY
+
+1. Purpose
+
+This policy explains the remote-working arrangements
+for employees of RAGAssist Sample Company.
+
+2. Eligibility
+
+Employees may request remote-working arrangements
+after completing three months of employment.
+
+Remote-working requests must be approved by the
+employee's line manager.
+
+3. Working Hours
+
+Employees are expected to remain available during
+their agreed core working hours of 10:00 to 15:00,
+Monday to Friday.
+
+4. Working From Abroad",0.386,yes,yes,
+Q08,How often are remote-working arrangements reviewed?,True,Every six months.,I couldn't find enough reliable evidence in the provided documents to answer that question.,insufficient_evidence,,,0.365,no,na,
+Q09,Can employees store confidential company data on personal devices?,True,No. Confidential company data must not be stored on personal devices.,No. Employees must not store confidential company data on personal devices. [Source 1],answered,f70447c364d3407b,"f70447c364d3407b: cure
+internet connection.
+
+6. Data Security
+
+Employees must use approved company systems
+and must not store confidential company data
+on personal devices.
+
+7. Review
+
+Remote-working arrangements are reviewed
+every six months.",0.526,yes,yes,
+Q10,How much money does the company provide for home-office furniture?,False,Not specified in the document.,I couldn't find enough reliable evidence in the provided documents to answer that question.,insufficient_evidence,,,0.447,yes,na,
+Q11,How many annual leave days do employees receive?,False,Not specified in the document.,I couldn't find enough reliable evidence in the provided documents to answer that question.,insufficient_evidence,,,0.537,yes,na,
+Q12,Are employees allowed to bring pets into the office?,False,Not specified in the document.,I couldn't find enough reliable evidence in the provided documents to answer that question.,insufficient_evidence,,,0.477,yes,na,
