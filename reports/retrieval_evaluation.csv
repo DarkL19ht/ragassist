@@ -1,0 +1,10 @@
+question_id,question,gold_chunk_ids,retrieved_chunk_ids,recall_at_1,recall_at_3,reciprocal_rank_at_3,latency_ms
+Q01,Can employees work from another country?,ba3021d3a05e7412,ba3021d3a05e7412|1a3510de6dfc06f1|f70447c364d3407b,1.0,1.0,1.0,15.32
+Q02,Who must approve working from abroad?,ba3021d3a05e7412,ba3021d3a05e7412|1a3510de6dfc06f1|f70447c364d3407b,1.0,1.0,1.0,1231.31
+Q03,What are the company's core working hours?,1a3510de6dfc06f1|ba3021d3a05e7412,ba3021d3a05e7412|1a3510de6dfc06f1|f70447c364d3407b,0.5,1.0,1.0,192.1
+Q04,Which days do the core working hours apply?,1a3510de6dfc06f1|ba3021d3a05e7412,ba3021d3a05e7412|1a3510de6dfc06f1|f70447c364d3407b,0.5,1.0,1.0,14.46
+Q05,What equipment does the company provide for remote workers?,ba3021d3a05e7412,ba3021d3a05e7412|1a3510de6dfc06f1|f70447c364d3407b,1.0,1.0,1.0,57.0
+Q06,When can employees request remote working?,1a3510de6dfc06f1,ba3021d3a05e7412|1a3510de6dfc06f1|f70447c364d3407b,0.0,1.0,0.5,41.96
+Q07,Who approves ordinary remote-working requests?,1a3510de6dfc06f1,ba3021d3a05e7412|1a3510de6dfc06f1|f70447c364d3407b,0.0,1.0,0.5,69.6
+Q08,How often are remote-working arrangements reviewed?,f70447c364d3407b,1a3510de6dfc06f1|ba3021d3a05e7412|f70447c364d3407b,0.0,1.0,0.3333333333333333,74.32
+Q09,Can employees store confidential company data on personal devices?,f70447c364d3407b,f70447c364d3407b|ba3021d3a05e7412|1a3510de6dfc06f1,1.0,1.0,1.0,206.64

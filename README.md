@@ -161,3 +161,29 @@ Document ingestion, chunking, embeddings, FAISS semantic search and LangChain re
 The repository includes a fictional remote-working policy document for development and testing.
 
 No real employee or confidential company data is required.
+
+## Retrieval Evaluation
+
+RAGAssist includes a reproducible evaluation pipeline
+for measuring semantic-retrieval quality.
+
+The evaluation uses curated questions and labelled
+source evidence to calculate:
+
+- Mean Recall@1
+- Mean Recall@3
+- Mean Reciprocal Rank at 3 (MRR@3)
+- Retrieval latency
+
+Run the evaluation:
+
+    python -m src.evaluation.run_retrieval_eval
+
+Results are saved to:
+
+- `reports/retrieval_evaluation.csv`
+- `reports/retrieval_evaluation.md`
+
+The current evaluation dataset is small and based on a
+fictional policy document. Results are an initial
+engineering baseline, not production benchmarks.

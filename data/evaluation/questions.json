@@ -1,0 +1,86 @@
+[
+  {
+    "id": "Q01",
+    "question": "Can employees work from another country?",
+    "answerable": true,
+    "evidence_phrase": "written approval from HR",
+    "expected_answer": "Written HR approval is required before working abroad."
+  },
+  {
+    "id": "Q02",
+    "question": "Who must approve working from abroad?",
+    "answerable": true,
+    "evidence_phrase": "written approval from HR",
+    "expected_answer": "HR must give written approval."
+  },
+  {
+    "id": "Q03",
+    "question": "What are the company's core working hours?",
+    "answerable": true,
+    "evidence_phrase": "10:00 to 15:00",
+    "expected_answer": "10:00 to 15:00, Monday to Friday."
+  },
+  {
+    "id": "Q04",
+    "question": "Which days do the core working hours apply?",
+    "answerable": true,
+    "evidence_phrase": "Monday to Friday",
+    "expected_answer": "Monday to Friday."
+  },
+  {
+    "id": "Q05",
+    "question": "What equipment does the company provide for remote workers?",
+    "answerable": true,
+    "evidence_phrase": "work laptop",
+    "expected_answer": "A work laptop for approved remote workers."
+  },
+  {
+    "id": "Q06",
+    "question": "When can employees request remote working?",
+    "answerable": true,
+    "evidence_phrase": "three months of employment",
+    "expected_answer": "After completing three months of employment."
+  },
+  {
+    "id": "Q07",
+    "question": "Who approves ordinary remote-working requests?",
+    "answerable": true,
+    "evidence_phrase": "line manager",
+    "expected_answer": "The employee's line manager."
+  },
+  {
+    "id": "Q08",
+    "question": "How often are remote-working arrangements reviewed?",
+    "answerable": true,
+    "evidence_phrase": "every six months",
+    "expected_answer": "Every six months."
+  },
+  {
+    "id": "Q09",
+    "question": "Can employees store confidential company data on personal devices?",
+    "answerable": true,
+    "evidence_phrase": "personal devices",
+    "expected_answer": "No. Confidential company data must not be stored on personal devices."
+  },
+  {
+    "id": "Q10",
+    "question": "How much money does the company provide for home-office furniture?",
+    "answerable": false,
+    "evidence_phrase": null,
+    "expected_answer": "Not specified in the document."
+  },
+  {
+    "id": "Q11",
+    "question": "How many annual leave days do employees receive?",
+    "answerable": false,
+    "evidence_phrase": null,
+    "expected_answer": "Not specified in the document."
+  },
+  {
+    "id": "Q12",
+    "question": "Are employees allowed to bring pets into the office?",
+    "answerable": false,
+    "evidence_phrase": null,
+    "expected_answer": "Not specified in the document."
+  }
+]
