@@ -245,5 +245,35 @@ The experimental findings and configuration trade-offs are documented in `report
 The comparison uses the same source documents and evaluation questions for each configuration and does not modify the application's saved FAISS index.
 
 
+## REST API
 
+RAGAssist provides a FastAPI backend for semantic retrieval and source-grounded question answering.
+
+### Available Endpoints
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/health` | API liveness check |
+| POST | `/retrieve` | Retrieve relevant document passages |
+| POST | `/ask` | Generate an evidence-grounded answer |
+
+### Run Locally
+
+```bash
+python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Interactive API documentation is available at:
+
+`http://localhost:8000/docs`
+
+### Automated Tests
+
+```bash
+python -m pytest tests/test_api.py -v
+```
+
+The API uses dependency injection to isolate inference logic during testing, avoiding external LLM requests and model downloads.
+
+See `docs/api.md` for request schemas, response examples, error handling and operational limitations.
 
