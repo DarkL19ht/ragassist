@@ -150,3 +150,8 @@ def ask_question(
 # Session-scoped document uploads and question answering.
 from src.api.workspace_routes import router as workspace_router
 app.include_router(workspace_router)
+
+
+# Accept browser requests from the separate static frontend.
+from src.api.cors_config import configure_cors
+configure_cors(app)

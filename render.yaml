@@ -1,0 +1,24 @@
+# Optional Render Blueprint. If using dashboard deployment, apply the same settings there.
+services:
+  - type: web
+    name: ragassist-api
+    runtime: python
+    plan: free
+    healthCheckPath: /health
+    buildCommand: >-
+      python -m pip install --upgrade pip &&
+      python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu &&
+      python -m pip install --no-cache-dir -r requirements-api.txt &&
+      python -m src.ingestion.run_ingestion &&
+      python -m src.chunking.run_chunking &&
+      python -m src.embeddings.build_index
+    startCommand: python -m uvicorn src.api.main:app --host 0.0.0.0 --port $PORT --workers 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.11
+      - key: HF_HOME
+        value: /opt/render/project/src/.hf_cache
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false

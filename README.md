@@ -344,3 +344,19 @@ documents only.
 
 See [Document Uploads](docs/document_uploads.md) for the API, storage behaviour,
 limits, tests and security considerations.
+
+## Static Evidence Workbench
+
+RAGAssist includes a lightweight, custom HTML/CSS/JavaScript research interface (`web/`) that can be deployed independently on Cloudflare Pages. The original Gradio frontend remains available for local development.
+
+The static website loads from CDN assets while the Python document-processing backend connects. It provides source-aware research briefs, cited references, an evidence register, PDF/TXT uploads, and pasted-text indexing. It displays useful progress states when a free backend is waking after inactivity. The backend still needs to be running before it can answer questions.
+
+Run the static interface locally:
+
+```bash
+python -m http.server 5500 --directory web
+```
+
+Start the existing FastAPI service separately on port 8000 and set `apiBaseUrl: 'http://127.0.0.1:8000'` in `web/config.js` for local testing. Include `http://localhost:5500` and/or `http://127.0.0.1:5500` in `CORS_ALLOWED_ORIGINS` for local browser requests.
+
+See [Static deployment guide](docs/static_deployment.md) for Cloudflare Pages, Render, CORS configuration, and deployment limitations.

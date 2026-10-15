@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RAGAssist is an evidence-first research workbench for exploring documents and verifying source-grounded answers.">
+  <meta name="theme-color" content="#142d2d">
+  <title>RAGAssist — Evidence Workbench</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js" defer></script>
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#research-workspace">Skip to research workspace</a>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="RAGAssist home"><span class="brand-icon" aria-hidden="true">⌁</span><span>RAG<span class="brand-highlight">ASSIST</span></span></a>
+      <div class="topbar-right"><span class="topbar-tag">DOCUMENT INTELLIGENCE / 01</span><span class="topbar-live"><span class="signal-dot" aria-hidden="true"></span> EVIDENCE WORKBENCH</span></div>
+    </header>
+
+    <main id="top">
+      <div class="masthead">
+        <div class="masthead-main">
+          <span class="eyebrow">SOURCE-GROUNDED RESEARCH SYSTEM <span class="eyebrow-symbol">↗</span></span>
+          <h1>Read between<br><em>the documents.</em></h1>
+          <p class="lead">Ask your questions. Examine the evidence. Make sense of the details.</p>
+        </div>
+        <div class="masthead-aside"><span class="small-index">THE RESEARCH DESK / 001</span><p>Answers should be traceable. RAGAssist connects every research brief to the document passages that informed it.</p><div class="hero-rule"></div><span class="small-index">PRIVATE, TEMPORARY WORKSPACES</span></div>
+      </div>
+
+      <div class="readiness" id="readiness" role="status" aria-live="polite">
+        <div class="readiness-left"><span class="dot preparing" id="service-dot" aria-hidden="true"></span><strong id="service-heading">Connecting to research engine</strong><span id="service-description">The website is ready. The document engine is waking in the background.</span></div>
+        <button id="retry-connection" class="text-button" type="button" hidden>Retry connection ↗</button>
+      </div>
+
+      <div class="workspace" id="research-workspace">
+        <aside class="sidebar" aria-label="Research controls">
+          <div class="section-label"><span>THE RESEARCH DESK</span><span>01 / INPUT</span></div>
+          <h2>Start an inquiry.</h2><p class="sidebar-intro">Search the sample policy or build a private, temporary library from your own sources.</p>
+
+          <form id="research-form">
+            <label for="question" class="field-title">YOUR RESEARCH QUESTION</label>
+            <textarea id="question" rows="4" maxlength="2000" required placeholder="What does the document say about...?"></textarea>
+            <div class="range-head"><label for="top-k" class="field-title">EVIDENCE DEPTH</label><output id="top-k-value" for="top-k">3 PASSAGES</output></div>
+            <input id="top-k" type="range" min="1" max="10" step="1" value="3">
+            <button class="primary-button" id="research-submit" type="submit">RUN RESEARCH <span aria-hidden="true">↗</span></button>
+          </form>
+
+          <div class="rule"></div>
+          <span class="field-title">RESEARCH COLLECTION</span>
+          <div class="source-switch" role="group" aria-label="Choose research collection">
+            <button id="sample-mode" class="source-option selected" type="button" aria-pressed="true">Sample policy</button>
+            <button id="uploaded-mode" class="source-option" type="button" aria-pressed="false" disabled>My sources</button>
+          </div>
+          <p class="collection-note" id="collection-note">Searching the built-in fictional remote-work policy.</p>
+          <div class="rule"></div>
+          <div class="suggested-label">SUGGESTED INQUIRIES</div>
+          <div class="suggestions">
+            <button class="suggestion" type="button" data-question="Can employees work from another country?">01 <span>Working internationally</span> <span aria-hidden="true">↗</span></button>
+            <button class="suggestion" type="button" data-question="What are the core working hours?">02 <span>Working hours</span> <span aria-hidden="true">↗</span></button>
+            <button class="suggestion" type="button" data-question="Who approves remote-working requests?">03 <span>Approval authority</span> <span aria-hidden="true">↗</span></button>
+          </div>
+
+          <details class="upload-details" id="source-details">
+            <summary><span>ADD YOUR SOURCE MATERIAL</span><span aria-hidden="true">＋</span></summary>
+            <div class="upload-interior">
+              <p class="upload-description">Upload a PDF or TXT document, or paste text to create a temporary searchable collection. Answers will cite your retrieved passages.</p>
+              <form id="upload-form">
+                <label class="field-title" for="document-files">DOCUMENT FILES</label>
+                <div class="file-zone"><span class="file-icon" aria-hidden="true">⇧</span><strong>Drop files here or click to upload</strong><span>PDF or TXT · up to 5 MB per file</span><input type="file" id="document-files" accept=".pdf,.txt,application/pdf,text/plain" multiple></div>
+                <output class="file-selection" id="file-selection" aria-live="polite">No files selected</output>
+                <label class="field-title" for="paste-title">PASTED TEXT TITLE</label>
+                <input id="paste-title" type="text" maxlength="100" placeholder="e.g. Team handbook">
+                <label class="field-title" for="paste-text">PASTE DOCUMENT TEXT</label>
+                <textarea id="paste-text" rows="5" maxlength="50000" placeholder="Paste policy text, meeting notes, or a document excerpt..."></textarea>
+                <button class="primary-button upload-button" id="index-submit" type="submit">INDEX SOURCE MATERIAL <span aria-hidden="true">＋</span></button>
+              </form>
+              <div class="document-list" id="document-list" aria-live="polite">Your sources will appear here after indexing.</div>
+              <button class="outline-button" id="clear-workspace" type="button" disabled>REMOVE MY SOURCES ↗</button>
+              <p class="privacy-notice">Temporary demo: uploaded content is processed on the backend and may be sent in retrieved excerpts to the LLM provider. Do not upload sensitive information. Workspaces expire and are lost if the backend sleeps or restarts.</p>
+            </div>
+          </details>
+        </aside>
+
+        <section class="results" aria-label="Research results" id="research-results" tabindex="-1">
+          <div class="results-topline"><span>RESEARCH OUTPUT</span><span id="run-indicator">AWAITING INPUT / NO SEARCH EXECUTED</span></div>
+          <div id="research-status" class="status-banner" role="status" aria-live="polite"><span class="dot"></span><span>AWAITING RESEARCH QUERY</span><small>NO RESULT GENERATED</small></div>
+          <div class="progress-panel" id="progress-panel" hidden aria-live="polite">
+            <span class="eyebrow">RESEARCH IN PROGRESS</span><h2 id="progress-title">Preparing your research brief.</h2>
+            <p id="progress-description">The service may need to wake up after a period of inactivity. Your research request will continue automatically.</p>
+            <div class="progress-track" role="progressbar" aria-label="Indeterminate processing progress"><span></span></div>
+            <div class="progress-footer"><span id="elapsed">00:00 ELAPSED</span><span>ESTIMATE VARIES · NO AUTOMATIC REFRESH</span></div>
+          </div>
+          <section class="output-card answer-card" aria-labelledby="answer-heading">
+            <div class="card-heading"><span>01 / RESEARCH BRIEF</span><span id="answer-tag">NOT GENERATED</span></div>
+            <div id="answer-content"><div class="empty-mark" aria-hidden="true">↗</div><h2 id="answer-heading">Answers backed<br>by evidence.</h2><p class="empty-copy">Choose a suggested inquiry or write your own. Your answer will appear here, with traceable evidence below.</p></div>
+            <p class="answer-warning">AI-generated research requires human verification. Citation markers do not independently prove correctness.</p>
+          </section>
+          <section class="output-card" aria-labelledby="citations-heading">
+            <div class="card-heading"><span id="citations-heading">02 / CITED REFERENCES</span><span id="citation-count">0 REFERENCES</span></div>
+            <div id="citation-list" class="citation-list"><p class="placeholder">Source references will appear when the model cites supporting passages.</p></div>
+          </section>
+          <section class="output-card" aria-labelledby="evidence-heading">
+            <div class="card-heading"><span id="evidence-heading">03 / EVIDENCE REGISTER</span><span id="evidence-count">0 PASSAGES</span></div>
+            <div id="evidence-list" class="evidence-list"><p class="placeholder">Source passages will appear here for independent review.</p></div>
+            <p class="evidence-footnote">Similarity scores indicate ranking, not the probability that an answer is correct.</p>
+          </section>
+        </section>
+      </div>
+    </main>
+    <footer class="footer"><span>RAGASSIST / EVIDENCE WORKBENCH</span><span>BUILT FOR SOURCE-GROUNDED RESEARCH</span><span>© DOCUMENT DEMONSTRATION</span></footer>
+  </div>
+</body>
+</html>
