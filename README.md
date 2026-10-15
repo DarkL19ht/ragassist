@@ -187,10 +187,6 @@ fictional policy document. Results are an initial
 engineering baseline, not production benchmarks.
 
 
-## Current Status
-
-Document ingestion, chunking, embeddings, FAISS semantic search and LangChain retrieval are implemented. LLM-based answer generation is planned for the next phase.
-
 ## Answer Quality Evaluation
 
 RAGAssist evaluates its generated answers using 12
@@ -222,3 +218,32 @@ See `reports/evaluation_summary.md` for results.
 The current dataset is small and fictional. These results
 are an initial engineering baseline, not a production
 reliability guarantee.
+
+
+## Retrieval Optimisation
+
+RAGAssist includes controlled experiments comparing character-based text chunking configurations.
+
+The experiments measure:
+
+- Recall@1 and Recall@3
+- Mean Reciprocal Rank at 3 (MRR@3)
+- Availability of labelled supporting evidence
+- Query retrieval latency
+- Number of indexed document chunks
+
+Run the comparison:
+
+```bash
+python -m src.evaluation.compare_retrieval
+```
+
+Results are saved in `reports/retrieval_comparison.csv` and `reports/retrieval_comparison_details.csv`.
+
+The experimental findings and configuration trade-offs are documented in `reports/retrieval_optimisation.md`.
+
+The comparison uses the same source documents and evaluation questions for each configuration and does not modify the application's saved FAISS index.
+
+
+
+

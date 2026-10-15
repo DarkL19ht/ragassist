@@ -1,0 +1,4 @@
+configuration,chunk_size,chunk_overlap,chunk_count,questions_evaluated,questions_with_labelled_evidence,questions_without_labelled_evidence,mean_recall_at_1,mean_recall_at_3,mrr_at_3,mean_latency_ms
+baseline,500,100,3,9,9,0,0.5556,1.0,0.8148,20.67
+smaller_chunks,300,50,4,9,9,0,0.5556,1.0,0.8148,10.39
+larger_chunks,800,150,2,9,9,0,0.8333,1.0,0.9444,10.29
