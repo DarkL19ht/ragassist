@@ -146,3 +146,7 @@ def ask_question(
             status_code=502,
             detail="Answer generation failed.",
         ) from error
+
+# Session-scoped document uploads and question answering.
+from src.api.workspace_routes import router as workspace_router
+app.include_router(workspace_router)

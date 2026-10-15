@@ -11,3 +11,5 @@ langchain-core>=1.0,<2.0
 fastapi
 uvicorn[standard]
 httpx
+gradio>=6,<7
+python-multipart

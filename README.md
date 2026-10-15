@@ -277,3 +277,70 @@ The API uses dependency injection to isolate inference logic during testing, avo
 
 See `docs/api.md` for request schemas, response examples, error handling and operational limitations.
 
+## Evidence Workbench
+
+RAGAssist includes a custom-designed Gradio research interface for exploring indexed documents and verifying AI-generated answers.
+
+The interface uses an editorial-style workspace rather than a conventional conversational layout.
+
+**Key capabilities**
+
+- Research-focused question input and suggested inquiries
+- Configurable semantic retrieval depth
+- Structured research briefs
+- Source citation references
+- Independently inspectable retrieved evidence
+- Explicit answer and error statuses
+- Responsive layout and custom visual styling
+- HTML-escaped rendering of generated answers and source content
+
+The frontend communicates with the existing FastAPI service through HTTP requests.
+
+### Run Locally
+
+Start the backend:
+
+```bash
+python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+```
+
+Start the frontend in a second terminal:
+
+```bash
+python -m src.frontend.app
+```
+
+Open `http://localhost:7860`.
+
+Design details are documented in `docs/frontend_design.md`.
+
+## Upload Documents and Paste Text
+
+RAGAssist includes a session-scoped document workspace. Upload selectable-text
+PDFs or UTF-8 TXT files, or paste text, to create a temporary searchable FAISS
+index. Questions are answered from **the uploaded workspace only**, without
+mixing sources from the bundled demonstration policy. Source citations and
+retrieved evidence remain visible in the Gradio research workbench.
+
+Start FastAPI and the frontend in separate terminals:
+
+```bash
+python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+python -m src.frontend.app
+```
+
+Open the Gradio interface at `http://localhost:7860`, expand **Add Your Source
+Material**, index files or pasted text, and ask a question. Click **Remove
+uploaded sources / use demo** to clear the temporary index.
+
+Maximum 5 MB per file, 10 sources and 40 pages per PDF. Workspaces live in a
+single backend process's memory and expire after 30 minutes of inactivity.
+Text-only PDFs are supported; OCR for scanned PDFs is not implemented.
+
+**Privacy:** Uploaded documents may be sent as retrieved passages to the Groq
+LLM for answer generation. This is a development demo without public-user
+authentication or rate limiting. Keep its ports private and use non-sensitive
+documents only.
+
+See [Document Uploads](docs/document_uploads.md) for the API, storage behaviour,
+limits, tests and security considerations.
