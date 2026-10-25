@@ -24,6 +24,12 @@ RAGAssist is an end-to-end retrieval-augmented generation application that enabl
 
 Python, FastAPI, LangChain, Sentence Transformers, FAISS, Groq, JavaScript, HTML, CSS, pytest, Cloudflare Pages and Render.
 
+## Application Preview
+
+![RAGAssist Evidence Workbench](docs/images/ragassist-workbench.png)
+
+![Research Results and Citations](docs/images/ragassist-research-results.png)
+
 ### Deployment
 
 The public interface is hosted on Cloudflare Pages, while the document indexing, retrieval and answer-generation services run on Render.
