@@ -86,3 +86,32 @@ def test_rate_limit_response_allows_cors():
             response.headers["access-control-allow-origin"]
             == "https://example.pages.dev"
         )
+
+def test_retrieval_limit():
+    app = FastAPI()
+
+    app.add_middleware(
+        UsageLimitMiddleware,
+        max_answers_per_hour=2,
+        max_index_actions_per_hour=2,
+        max_retrievals_per_hour=2,
+    )
+
+    @app.post("/retrieve")
+    def retrieve():
+        return {"results": []}
+
+    @app.post("/workspaces/retrieve")
+    def retrieve_uploaded():
+        return {"results": []}
+
+    with TestClient(app) as client:
+        first = client.post("/retrieve")
+        second = client.post("/workspaces/retrieve")
+        third = client.post("/retrieve")
+
+        assert first.status_code == 200
+        assert second.status_code == 200
+        assert third.status_code == 429
+
+        assert "Retry-After" in third.headers

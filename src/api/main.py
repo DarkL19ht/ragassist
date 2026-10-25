@@ -1,6 +1,7 @@
 # API endpoints
 
 import logging
+import os
 
 from fastapi import Depends, FastAPI, HTTPException
 
@@ -156,8 +157,6 @@ app.include_router(workspace_router)
 from src.api.cors_config import configure_cors
 
 #Register the middleware
-import os
-
 from src.api.usage_limits import UsageLimitMiddleware
 
 app.add_middleware(
@@ -167,6 +166,9 @@ app.add_middleware(
     ),
     max_index_actions_per_hour=int(
         os.getenv("MAX_INDEX_ACTIONS_PER_HOUR", "12")
+    ),
+    max_retrievals_per_hour=int(
+        os.getenv("MAX_RETRIEVALS_PER_HOUR", "120")
     ),
 )
 configure_cors(app)
