@@ -154,4 +154,19 @@ app.include_router(workspace_router)
 
 # Accept browser requests from the separate static frontend.
 from src.api.cors_config import configure_cors
+
+#Register the middleware
+import os
+
+from src.api.usage_limits import UsageLimitMiddleware
+
+app.add_middleware(
+    UsageLimitMiddleware,
+    max_answers_per_hour=int(
+        os.getenv("MAX_ANSWERS_PER_HOUR", "20")
+    ),
+    max_index_actions_per_hour=int(
+        os.getenv("MAX_INDEX_ACTIONS_PER_HOUR", "12")
+    ),
+)
 configure_cors(app)

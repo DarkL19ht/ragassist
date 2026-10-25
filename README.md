@@ -1,24 +1,52 @@
-# RAGAssist — Evaluated, Citation-Aware Document Question Answering
+## Live Application
 
-RAGAssist is an AI engineering portfolio project focused on building a reliable retrieval-augmented generation (RAG) system.
+**RAGAssist — Evidence-Grounded Document Intelligence**
 
-The application will allow users to upload documents, ask natural-language questions, and receive answers grounded in retrieved document passages.
+[Launch RAGAssist](https://ragassist-workbench.darkl19hts.workers.dev/#research-workspace)
 
-## Project Objectives
+RAGAssist is an end-to-end retrieval-augmented generation application that enables users to upload documents, perform semantic searches, and generate evidence-grounded answers with traceable source citations.
 
-- Ingest PDF and TXT documents.
-- Extract and chunk text while preserving source metadata.
-- Generate embeddings and build a FAISS vector index.
-- Implement semantic retrieval using LangChain.
-- Generate answers using an LLM with source citations.
-- Evaluate retrieval using Recall@K and Mean Reciprocal Rank (MRR).
-- Assess answer quality, hallucinations and unsupported responses.
-- Expose the application through FastAPI.
-- Build an interactive frontend and deploy the application online.
+### Features
 
-## Planned Technology Stack
+- PDF and TXT document ingestion
+- Pasted-text indexing
+- Session-isolated document workspaces
+- Sentence Transformer embeddings
+- FAISS-based semantic retrieval
+- LLM-powered answer generation using Groq
+- Source citations and retrieved-evidence inspection
+- Retrieval and answer-quality evaluation
+- Retrieval chunking optimisation experiments
+- FastAPI REST backend
+- Responsive research-oriented web interface
 
-Python, LangChain, FAISS, embedding models, LLM APIs or local models, FastAPI, pytest and GitHub Actions.
+### Technology Stack
+
+Python, FastAPI, LangChain, Sentence Transformers, FAISS, Groq, JavaScript, HTML, CSS, pytest, Cloudflare Pages and Render.
+
+### Deployment
+
+The public interface is hosted on Cloudflare Pages, while the document indexing, retrieval and answer-generation services run on Render.
+
+The frontend loads independently of the backend and provides informative loading states during backend cold starts.
+
+The free backend may require additional startup time after periods of inactivity.
+
+### Evaluation
+
+The initial retrieval evaluation achieved:
+
+| Metric | Result |
+|---|---:|
+| Mean Recall@1 | 0.5556 |
+| Mean Recall@3 | 1.0000 |
+| MRR@3 | 0.8148 |
+
+The retrieval optimisation experiment identified larger chunks as a promising candidate, with Mean Recall@1 of 0.8333 and MRR@3 of 0.9444 on the small evaluation dataset.
+
+These findings are initial experimental results and are not presented as production-scale performance guarantees.
+
+Detailed results and limitations are documented in the `reports/` directory.
 
 ## Project Structure
 
@@ -360,3 +388,6 @@ python -m http.server 5500 --directory web
 Start the existing FastAPI service separately on port 8000 and set `apiBaseUrl: 'http://127.0.0.1:8000'` in `web/config.js` for local testing. Include `http://localhost:5500` and/or `http://127.0.0.1:5500` in `CORS_ALLOWED_ORIGINS` for local browser requests.
 
 See [Static deployment guide](docs/static_deployment.md) for Cloudflare Pages, Render, CORS configuration, and deployment limitations.
+
+
+# Email: olamideolaitan111@gmail.com
