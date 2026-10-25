@@ -1,28 +1,8 @@
-## Live Application
+# RAGAssist — Evidence-Grounded Document Intelligence
 
-**RAGAssist — Evidence-Grounded Document Intelligence**
+**An end-to-end Retrieval-Augmented Generation (RAG) application for document ingestion, semantic search, and evidence-grounded question answering.**
 
-[Launch RAGAssist](https://ragassist-workbench.darkl19hts.workers.dev/#research-workspace)
-
-RAGAssist is an end-to-end retrieval-augmented generation application that enables users to upload documents, perform semantic searches, and generate evidence-grounded answers with traceable source citations.
-
-### Features
-
-- PDF and TXT document ingestion
-- Pasted-text indexing
-- Session-isolated document workspaces
-- Sentence Transformer embeddings
-- FAISS-based semantic retrieval
-- LLM-powered answer generation using Groq
-- Source citations and retrieved-evidence inspection
-- Retrieval and answer-quality evaluation
-- Retrieval chunking optimisation experiments
-- FastAPI REST backend
-- Responsive research-oriented web interface
-
-### Technology Stack
-
-Python, FastAPI, LangChain, Sentence Transformers, FAISS, Groq, JavaScript, HTML, CSS, pytest, Cloudflare Pages and Render.
+[**Live Application**](https://ragassist-workbench.darkl19hts.workers.dev) | [API Documentation](docs/api.md) | [Evaluation Results](reports/evaluation_summary.md)
 
 ## Application Preview
 
@@ -30,29 +10,120 @@ Python, FastAPI, LangChain, Sentence Transformers, FAISS, Groq, JavaScript, HTML
 
 ![Research Results and Citations](docs/images/ragassist-research-results.png)
 
-### Deployment
+## Overview
 
-The public interface is hosted on Cloudflare Pages, while the document indexing, retrieval and answer-generation services run on Render.
+RAGAssist enables users to upload PDF and TXT documents or paste text, ask natural-language questions, and receive AI-generated answers with traceable source citations.
 
-The frontend loads independently of the backend and provides informative loading states during backend cold starts.
+The application combines semantic retrieval with large language model generation, allowing users to inspect supporting document passages and assess the reliability of generated responses.
 
-The free backend may require additional startup time after periods of inactivity.
+Developed as an end-to-end AI engineering project, RAGAssist demonstrates the integration of document processing, vector search, language models, REST APIs, automated evaluation, and cloud deployment.
 
-### Evaluation
+## Key Features
 
-The initial retrieval evaluation achieved:
+- **Document ingestion:** Process text-based PDF files, TXT files, and pasted text.
+- **Semantic search:** Retrieve relevant passages using Sentence Transformer embeddings and FAISS.
+- **Grounded answer generation:** Generate answers using retrieved document context and a Groq-hosted language model.
+- **Source citations:** Display supporting filenames, chunk identifiers, and available page references.
+- **Evidence inspection:** Allow users to review retrieved passages independently of generated answers.
+- **Document workspaces:** Maintain temporary uploaded-document collections separately from the demonstration dataset.
+- **Evaluation framework:** Measure retrieval quality, answer correctness, citation support, abstention behaviour, and latency.
+- **REST API:** Provide validated retrieval and question-answering endpoints through FastAPI.
+- **Interactive web application:** Deliver a responsive Evidence Workbench through Cloudflare Pages.
+- **Automated testing:** Validate components, API behaviour, and frontend functionality.
+
+## Technology Stack
+
+| Area | Technologies |
+|---|---|
+| Programming | Python, JavaScript |
+| Document processing | pypdf, custom text processing |
+| Embeddings | Sentence Transformers, all-MiniLM-L6-v2 |
+| Vector retrieval | FAISS |
+| RAG orchestration | LangChain |
+| Answer generation | GroqCloud, openai/gpt-oss-20b |
+| Backend | FastAPI, Pydantic, Uvicorn |
+| Frontend | HTML, CSS, JavaScript |
+| Testing | pytest, HTTPX, Node.js test runner |
+| Deployment | Cloudflare Pages, Render |
+| Version control | Git, GitHub |
+
+## Model and Retrieval Evaluation
+
+RAGAssist includes a reproducible evaluation framework based on a curated question set covering answerable and unanswerable queries.
+
+### Retrieval Baseline
 
 | Metric | Result |
 |---|---:|
 | Mean Recall@1 | 0.5556 |
 | Mean Recall@3 | 1.0000 |
 | MRR@3 | 0.8148 |
+| Mean retrieval latency | 211.41 ms |
 
-The retrieval optimisation experiment identified larger chunks as a promising candidate, with Mean Recall@1 of 0.8333 and MRR@3 of 0.9444 on the small evaluation dataset.
+The initial retrieval evaluation used nine answerable questions and a fictional remote-working policy.
 
-These findings are initial experimental results and are not presented as production-scale performance guarantees.
+### Answer Quality
 
-Detailed results and limitations are documented in the `reports/` directory.
+| Metric | Result |
+|---|---:|
+| Overall correctness | 75.0% |
+| Correctness on answerable questions | 66.7% |
+| Correct abstention rate on unanswerable questions | 100% |
+| Incorrect abstentions | 3 |
+
+The answer evaluation exposed a difference between successful evidence retrieval and reliable LLM answer generation, identifying unnecessary abstentions as an area for improvement.
+
+### Retrieval Optimisation
+
+Three chunking configurations were compared.
+
+| Configuration | Mean Recall@1 | MRR@3 |
+|---|---:|---:|
+| 500 characters / 100 overlap | 0.5556 | 0.8148 |
+| 300 characters / 50 overlap | 0.5556 | 0.8148 |
+| 800 characters / 150 overlap | 0.8333 | 0.9444 |
+
+The larger-chunk configuration achieved the strongest ranking metrics on the evaluation dataset. However, the small indexed collection limits the generalisability of these findings.
+
+The 500/100 configuration remains the reference implementation pending broader evaluation.
+
+See the detailed reports in the `reports/` directory.
+
+## Deployment Architecture
+
+The public frontend is hosted on Cloudflare Pages, independently of the Python backend running on Render.
+
+This separation allows the Evidence Workbench to load promptly even when the free backend is waking after inactivity.
+
+The backend performs document processing, embedding generation, FAISS retrieval, and LLM answer generation.
+
+## Limitations
+
+- The evaluation dataset contains one fictional policy and a limited number of questions.
+- Generated answers can be inaccurate or unnecessarily abstain.
+- Uploaded-document workspaces are temporary and may disappear after backend restarts.
+- Scanned PDFs requiring OCR are not supported.
+- Free backend hosting may introduce cold-start delays before research requests complete.
+- The public application is intended as a controlled portfolio demonstration, not a production service for sensitive documents.
+
+## Future Improvements
+
+- Broader multi-document retrieval evaluation
+- Stronger citation-support verification
+- Improved abstention handling
+- Persistent document storage
+- Authentication and distributed rate limiting
+- Model and application monitoring
+- Automated regression evaluation
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [API Reference](docs/api.md)
+- [Frontend Design](docs/frontend_design.md)
+- [Document Uploads](docs/document_uploads.md)
+- [Retrieval Optimisation](reports/retrieval_optimisation.md)
+- [Evaluation Summary](reports/evaluation_summary.md)
 
 ## Project Structure
 
