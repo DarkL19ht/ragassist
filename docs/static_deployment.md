@@ -57,7 +57,7 @@ The Python installer appends `configure_cors(app)` to the existing `src/api/main
    | Build command | `exit 0` |
    | Build output directory | `web` |
 
-5. Deploy. The site will have a `https://<PROJECT>.pages.dev` address.
+5. Deploy. The site will have a `https://ragassist-workbench.darkl19hts.workers.dev` address.
 6. With the default `web/config.js` placeholder, the **website loads but displays 'Backend URL not configured'.** That is intentional until the backend has a public URL.
 7. Record the exact `https://...pages.dev` origin **without a trailing slash**.
 
@@ -96,7 +96,7 @@ Environment variables (Render dashboard, **not GitHub**):
 |---|---|
 | `GROQ_API_KEY` | Your secret API key |
 | `PYTHON_VERSION` | `3.12.11` |
-| `CORS_ALLOWED_ORIGINS` | Exact Cloudflare Pages origin, e.g. `https://ragassist-workbench.pages.dev` |
+| `CORS_ALLOWED_ORIGINS` | https://ragassist-workbench.darkl19hts.workers.dev/ |
 | `HF_HOME` | `/opt/render/project/src/.hf_cache` (cache build-time embedding model assets in project workspace) |
 
 Note: `HF_HOME` may be set in the environment for both build and runtime; Render's working directory may differ, so verify this path if the model re-downloads at runtime. The embedding model is downloaded as part of index building.
